@@ -2,7 +2,7 @@
   "name": "dotnet-memviewer",
   "displayName": ".NET MemViewer",
   "description": "Visualize .NET Core thread memory — stack frames, heap objects, and their references in real-time",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ArunSakthivel",
   "engines": {
     "vscode": "^1.85.0"
