@@ -1,0 +1,143 @@
+{
+  "name": "dotnet-memviewer",
+  "displayName": ".NET MemViewer",
+  "description": "Visualize .NET Core thread memory — stack frames, heap objects, and their references in real-time",
+  "version": "0.1.1",
+  "publisher": "ArunSakthivel",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Debuggers",
+    "Visualization"
+  ],
+  "keywords": [
+    ".NET",
+    "memory",
+    "heap",
+    "stack",
+    "thread",
+    "diagnostics",
+    "profiler"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "icon": "media/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "memviewer.selectProcess",
+        "title": "MemViewer: Select .NET Process",
+        "icon": "$(search)"
+      },
+      {
+        "command": "memviewer.captureSnapshot",
+        "title": "MemViewer: Capture Memory Snapshot",
+        "icon": "$(device-camera)"
+      },
+      {
+        "command": "memviewer.refreshProcesses",
+        "title": "MemViewer: Refresh Process List",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "memviewer.openVisualizer",
+        "title": "MemViewer: Open Memory Visualizer",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "memviewer.loadDemo",
+        "title": "MemViewer: Load Demo Data",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "memviewer.captureDebugSnapshot",
+        "title": "MemViewer: Capture Debug Snapshot",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "memviewer.clearSnapshots",
+        "title": "MemViewer: Clear All Snapshots",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "memviewer.clearLiveMemory",
+        "title": "MemViewer: Clear Live Memory Tracking",
+        "icon": "$(close)"
+      },
+      {
+        "command": "memviewer.clearProcesses",
+        "title": "MemViewer: Clear Process List",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "memviewer",
+          "title": ".NET MemViewer",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "memviewer": [
+        {
+          "id": "memviewer.processes",
+          "name": "Processes"
+        },
+        {
+          "id": "memviewer.snapshots",
+          "name": "Snapshots"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "memviewer.processes",
+        "contents": "No .NET processes found.\n[Select Process](command:memviewer.selectProcess)\n[Load Demo Data](command:memviewer.loadDemo)\n[Refresh](command:memviewer.refreshProcesses)"
+      },
+      {
+        "view": "memviewer.snapshots",
+        "contents": "No snapshots captured yet.\n[Capture Snapshot](command:memviewer.captureSnapshot)\n[Load Demo Data](command:memviewer.loadDemo)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "memviewer.refreshProcesses",
+          "when": "view == memviewer.processes",
+          "group": "navigation"
+        },
+        {
+          "command": "memviewer.captureSnapshot",
+          "when": "view == memviewer.processes",
+          "group": "navigation"
+        },
+        {
+          "command": "memviewer.clearProcesses",
+          "when": "view == memviewer.processes",
+          "group": "navigation"
+        },
+        {
+          "command": "memviewer.clearSnapshots",
+          "when": "view == memviewer.snapshots",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run clean && npm run compile",
+    "clean": "rimraf out",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.3.3"
+  }
+}
