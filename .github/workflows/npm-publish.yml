@@ -1,5 +1,4 @@
-name: Node.js Package
-
+name: Build and Deploy Extension v2
 on:
   release:
     types: [created]
